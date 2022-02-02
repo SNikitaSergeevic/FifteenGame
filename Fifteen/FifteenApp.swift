@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct FifteenApp: App {
+    var viewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
         }
     }
 }
