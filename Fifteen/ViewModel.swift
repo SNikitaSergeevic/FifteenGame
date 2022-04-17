@@ -16,13 +16,17 @@ class ViewModel: ObservableObject {
         Model(content: number)
     }
     
+    func resetForNewGame() {
+        
+    }
+    
     @Published var model: Model = createGame()
 
     
 // MARK: - Intent
     func swipe (number: Int) {
         model.swipe(cell: number)
-        print("swipe", model.gameField)
+//        print("swipe", model.gameField)
 //        model.swipe(cell: cell, side: side)
     }
     

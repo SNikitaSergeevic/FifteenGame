@@ -30,17 +30,18 @@ struct ContentView: View {
                 
                 //            Text ("Personal Best")
             }
-            .toolbar{
-                ToolbarItem(placement:.navigationBarLeading){
-                    Button {
-                        viewModel.shape()
-                    } label: {
-                        Text("New game")
-                    }
-                    .buttonStyle(DefaultButtonStyle())
-                }
-                
-            }
+//            .toolbar{
+//                ToolbarItem(placement:.navigationBarLeading){
+//                    Button {
+//                        viewModel.shape()
+//                        
+//                    } label: {
+//                        Text("Main menu")
+//                    }
+//                    .buttonStyle(DefaultButtonStyle())
+//                }
+//                
+//            }
         }
     }
 }
@@ -51,7 +52,7 @@ struct ContentView: View {
 
 struct CellView: View {
     var content: Int
-    var viewModel: ViewModel = ViewModel()
+//    var viewModel: ViewModel = ViewModel()
     var body: some View {
         
         ZStack {
@@ -64,11 +65,11 @@ struct CellView: View {
             } else {
                 RoundedRectangle(cornerRadius: 10).fill(Color.Neumorphic.main).softInnerShadow(RoundedRectangle(cornerRadius: 3), spread: 0.1, radius: 1 )
             }
-        } // zstack
+        }
         .aspectRatio(1/1, contentMode: .fill)
         
     }
-} //Cell
+}
 
 
 struct FieldView: View {

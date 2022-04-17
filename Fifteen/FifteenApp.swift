@@ -4,6 +4,9 @@
 //
 //  Created by ProstoKakTo on 26.06.2021.
 //
+// add continue with userDefaults
+//
+//
 
 import SwiftUI
 
@@ -12,7 +15,8 @@ struct FifteenApp: App {
     var viewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: viewModel)
+//            ContentView(viewModel: viewModel)
+            MainMenuView(viewModel: viewModel)
         }
     }
 }

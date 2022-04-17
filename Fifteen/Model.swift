@@ -23,12 +23,12 @@ struct Model {
             gameField.append(temp!)
             gameField.shuffle()
         }
-        print(gameContent)
-        print(gameField)
+        
     }
     
     mutating func shapes () {
         gameField.shuffle()
+        quantityMove = 0
     }
     
     mutating func swipe (cell: Int) {
