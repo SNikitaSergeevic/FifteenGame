@@ -26,6 +26,29 @@ struct Model {
         
     }
     
+   mutating func continueGame(){
+       var gameContent: [Cell] = []
+       var gameField: [Field] = []
+       if let content = UserDefaults.standard.array(forKey: "content") {
+           for index in content as! [Int] {
+               gameContent.append(Cell(id: index))
+               gameField.append(Field(id: index, content: gameContent[index]))
+           }
+           quantityMove = UserDefaults.standard.integer(forKey: "quantityMove")
+       }
+    }
+    
+    func saveGame(){
+      
+    var content: [Int] = []
+        for i in gameContent {
+            content.append(i.id)
+        }
+        
+        UserDefaults.standard.set(content, forKey: "content")
+        UserDefaults.standard.set(quantityMove, forKey: "quantityMove")
+    }
+    
     mutating func shapes () {
         gameField.shuffle()
         quantityMove = 0

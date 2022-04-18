@@ -16,8 +16,20 @@ class ViewModel: ObservableObject {
         Model(content: number)
     }
     
-    func resetForNewGame() {
-        
+    func continueGame(){
+        model.continueGame()
+    }
+    
+    func saveGameCount() -> Bool{
+        if UserDefaults.standard.array(forKey: "content") != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func saveGameForContinue(){
+        model.saveGame()
     }
     
     @Published var model: Model = createGame()

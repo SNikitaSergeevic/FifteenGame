@@ -11,10 +11,11 @@ import AVFoundation
 
 struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
             VStack {
-               
+                
                 
                 Spacer()
                 
@@ -30,19 +31,20 @@ struct ContentView: View {
                 
                 //            Text ("Personal Best")
             }
-//            .toolbar{
-//                ToolbarItem(placement:.navigationBarLeading){
-//                    Button {
-//                        viewModel.shape()
-//                        
-//                    } label: {
-//                        Text("Main menu")
-//                    }
-//                    .buttonStyle(DefaultButtonStyle())
-//                }
-//                
-//            }
+            
+            
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading:
+                                Button(action:{
+                                    self.presentationMode.wrappedValue.dismiss()
+                                    viewModel.saveGameForContinue()
+                                }){
+                                    Text("Back menu")
+                                        .font(.title3)
+                                        .foregroundColor(Color.black)
+                                }
+        )
     }
 }
 
@@ -52,7 +54,7 @@ struct ContentView: View {
 
 struct CellView: View {
     var content: Int
-//    var viewModel: ViewModel = ViewModel()
+    //    var viewModel: ViewModel = ViewModel()
     var body: some View {
         
         ZStack {

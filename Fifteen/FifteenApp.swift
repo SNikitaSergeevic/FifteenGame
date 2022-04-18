@@ -4,8 +4,8 @@
 //
 //  Created by ProstoKakTo on 26.06.2021.
 //
-// add continue with userDefaults
 //
+// сохраненная игра стирается при начале новой игры, добавить аллерт
 //
 
 import SwiftUI
