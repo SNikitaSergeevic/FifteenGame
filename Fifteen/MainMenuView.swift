@@ -15,15 +15,24 @@ struct MainMenuView: View {
     var body: some View {
         NavigationView {
             VStack(alignment:.center){
-                NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.shape()}) {
-                    Text("New Game")
-                }
-                .buttonStyle(MenuButtonStyle())
-                .padding(.top, 30)
-                
                 if viewModel.saveGameCount() {
+                    HStack {
+                        Spacer()
+                        NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.shape()}) {
+                            Text("New Game")
+                                .font(.body)
+                                .foregroundColor(.black)
+                        }
+                        .padding()
+                    }
                     NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.continueGame()}) {
                         Text("Continue")
+                    }
+                    .buttonStyle(MenuButtonStyle())
+                    .padding(.top, 30)
+                } else {
+                    NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.shape()}) {
+                        Text("New Game")
                     }
                     .buttonStyle(MenuButtonStyle())
                     .padding(.top, 30)
@@ -38,7 +47,19 @@ struct MainMenuView: View {
                 
                 
             }
-            .navigationTitle(Text("Fifteen"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .principal) {
+                    
+                    HStack {
+                        Text("Fifteen")
+                            .font(.system(size: 30, weight: .bold, design: .default))
+                        Spacer()
+                        
+                    }
+                    .padding()
+                }
+            }
         }
     }
 }
