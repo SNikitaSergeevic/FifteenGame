@@ -8,46 +8,44 @@
 import Foundation
  
 struct Model {
-    var gameContent: [Cell] = []
+//    var gameContent: [Cell] = []
     var gameField: [Field] = []
     var quantityMove: Int = 0
     
-    init (content: [Int]) {
-        for index in content {
-            gameContent.append(Cell(id: index))
-            gameField.append(Field(id: index, content: gameContent[index]))
-        }
-        if gameField[0].id == 0 {
-            let temp = gameField.first
-            gameField.remove(at: 0)
-            gameField.append(temp!)
-            gameField.shuffle()
-        }
-        
+    init (newGamme content: [Int]) {
+            for index in content {
+                let cell = Cell(id: index)
+                gameField.append(Field(id: index, content: cell))
+            }
+            if gameField[0].content.id == 0 {
+                let temp = gameField.first
+                gameField.remove(at: 0)
+                gameField.append(temp!)
+                gameField.shuffle()
+                print("init")
+                
+            }
     }
     
-   mutating func continueGame(){
-       var gameContent: [Cell] = []
-       var gameField: [Field] = []
-       if let content = UserDefaults.standard.array(forKey: "content") {
-           for index in content as! [Int] {
-               gameContent.append(Cell(id: index))
-               gameField.append(Field(id: index, content: gameContent[index]))
-           }
-           quantityMove = UserDefaults.standard.integer(forKey: "quantityMove")
-       }
+    init (continue content: [Int], move: Int) {
+            for index in content {
+                let cell = Cell(id: index)
+                gameField.append(Field(id: index, content: cell))
+            }
+        quantityMove = move
+//            if gameField[0].content.id == 0 {
+//                let temp = gameField.first
+//                gameField.remove(at: 0)
+//                gameField.append(temp!)
+//                gameField.shuffle()
+//                print("init")
+//
+//            }
     }
     
-    func saveGame(){
-      
-    var content: [Int] = []
-        for i in gameContent {
-            content.append(i.id)
-        }
-        
-        UserDefaults.standard.set(content, forKey: "content")
-        UserDefaults.standard.set(quantityMove, forKey: "quantityMove")
-    }
+   
+    
+    
     
     mutating func shapes () {
         gameField.shuffle()

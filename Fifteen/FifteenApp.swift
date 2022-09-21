@@ -13,11 +13,15 @@ import SwiftUI
 
 @main
 struct FifteenApp: App {
-    var viewModel = ViewModel()
+    
+    var viewModelNewGame = ViewModelNewGame()
+//    var viewModelContinueGame = ViewModelContinueGame()
     var body: some Scene {
         WindowGroup {
 //            ContentView(viewModel: viewModel)
-            MainMenuView(viewModel: viewModel)
+            MainMenuView()
+                .environmentObject(viewModelNewGame)
+                .environmentObject(viewModelNewGame.viewModelContinueGame)
         }
     }
 }

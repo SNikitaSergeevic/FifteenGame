@@ -6,19 +6,25 @@
 //
 
 import SwiftUI
+import Foundation
 
-class ViewModel: ObservableObject {
+class ViewModelNewGame: ObservableObject {
     
     private static let number = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     
-// MARK: - Create Game
-    private static func createGame()->Model   {
-        Model(content: number)
+    var viewModelContinueGame = ViewModelContinueGame()
+    func viewModelForContinueGame() -> ViewModelContinueGame {
+        viewModelContinueGame
     }
     
-    func continueGame(){
-        model.continueGame()
+    
+// MARK: - Create Game
+    private static func createGame()->Model   {
+        var model = Model(newGamme: number)
+        return model
     }
+    
+    
     
     func saveGameCount() -> Bool{
         if UserDefaults.standard.array(forKey: "content") != nil {
@@ -28,9 +34,21 @@ class ViewModel: ObservableObject {
         }
     }
     
-    func saveGameForContinue(){
-        model.saveGame()
+    func saveGame() {
+        var content: [Int] = []
+        let quantityMove: Int = model.quantityMove
+        print("USE saveGame")
+        for item in model.gameField {
+            content.append(item.content.id)
+        }
+        viewModelContinueGame.updateModel(num: content, move: quantityMove)
+        UserDefaults.standard.set(content, forKey: "content")
+        UserDefaults.standard.set(quantityMove, forKey: "quantityMove")
+        print(content)
     }
+    
+    
+    
     
     @Published var model: Model = createGame()
 

@@ -10,40 +10,44 @@ import Neumorphic
 import AVFoundation
 
 struct MainMenuView: View {
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModelNewGame: ViewModelNewGame
+    @EnvironmentObject var viewModelContinueGame: ViewModelContinueGame
     
     var body: some View {
         NavigationView {
             VStack(alignment:.center){
-                if viewModel.saveGameCount() {
+                if viewModelNewGame.saveGameCount() {
                     HStack {
                         Spacer()
-                        NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.shape()}) {
+                        NavigationLink(destination: NewGameView().onAppear{viewModelNewGame.shape()}) {
                             Text("New Game")
                                 .font(.body)
                                 .foregroundColor(.black)
                         }
                         .padding()
                     }
-                    NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.continueGame()}) {
+                    NavigationLink(destination: ContinueGameView().onAppear{}) {
                         Text("Continue")
                     }
                     .buttonStyle(MenuButtonStyle())
                     .padding(.top, 30)
+                    
+                    
+                    
                 } else {
-                    NavigationLink(destination: ContentView(viewModel: viewModel).onAppear{viewModel.shape()}) {
+                    NavigationLink(destination: NewGameView()) {
                         Text("New Game")
                     }
                     .buttonStyle(MenuButtonStyle())
                     .padding(.top, 30)
                 }
                 
-                Button(action: {}, label: {Text("My records")})
+                Button(action: {}, label: {Text("My records(in work)")})
                     .buttonStyle(MenuButtonStyle())
-                Button(action: {}, label: {Text("Global records")})
-                    .buttonStyle(MenuButtonStyle())
+//                Button(action: {}, label: {Text("Global records")})
+//                    .buttonStyle(MenuButtonStyle())
                 Spacer()
-                Button(action: {}, label: {Text("About us")})
+//                Button(action: {}, label: {Text("About us")})
                 
                 
             }
@@ -85,6 +89,6 @@ struct MenuButtonStyle: ButtonStyle {
 
 struct MainMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenuView(viewModel: ViewModel())
+        MainMenuView()
     }
 }

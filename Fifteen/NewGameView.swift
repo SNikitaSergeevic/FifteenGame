@@ -9,8 +9,9 @@ import SwiftUI
 import Neumorphic
 import AVFoundation
 
-struct ContentView: View {
-    @ObservedObject var viewModel: ViewModel
+struct NewGameView: View {
+    @EnvironmentObject var viewModel: ViewModelNewGame
+    @EnvironmentObject var viewModelContinueGame: ViewModelContinueGame
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
@@ -29,7 +30,10 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                //            Text ("Personal Best")
+                Button{
+                    
+                } label: {Text("Shape")}
+                
             }
             
             
@@ -37,13 +41,15 @@ struct ContentView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
                                 Button(action:{
-                                    self.presentationMode.wrappedValue.dismiss()
-                                    viewModel.saveGameForContinue()
-                                }){
-                                    Text("Back menu")
-                                        .font(.title3)
-                                        .foregroundColor(Color.black)
-                                }
+            self.presentationMode.wrappedValue.dismiss()
+//            viewModel.saveGame()
+            viewModel.saveGame()
+            
+        }){
+            Text("Back menu")
+                .font(.title3)
+                .foregroundColor(Color.black)
+        }
         )
     }
 }
@@ -75,7 +81,7 @@ struct CellView: View {
 
 
 struct FieldView: View {
-    @ObservedObject var viewModel: ViewModel
+    @ObservedObject var viewModel: ViewModelNewGame
     @State var tap = false
     var body: some View {
         ZStack {
@@ -118,9 +124,9 @@ struct FieldView: View {
 
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(viewModel: ViewModel())
-        
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(viewModel: ViewModel())
+//        
+//    }
+//}
