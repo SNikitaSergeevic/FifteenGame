@@ -20,7 +20,7 @@ class ViewModelNewGame: ObservableObject {
     
 // MARK: - Create Game
     private static func createGame()->Model   {
-        var model = Model(newGamme: number)
+        let model = Model(newGamme: number)
         return model
     }
     

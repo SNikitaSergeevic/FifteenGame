@@ -17,8 +17,26 @@ class ViewModelContinueGame: ObservableObject {
 // MARK: - Create Game
     private static func createGame()->Model   {
         
-        let number = UserDefaults.standard.object(forKey: "content") as! [Int]
-        let move = UserDefaults.standard.object(forKey: "quantityMove") as! Int
+        var number: [Int] {
+            
+            if let content = UserDefaults.standard.object(forKey: "content") as? [Int] {
+                return content
+            } else {
+                return [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+            }
+            
+            
+        }
+        
+        var move: Int {
+            
+            if let move = UserDefaults.standard.object(forKey: "quantityMove") as? Int {
+                return move
+            } else {
+                return 0
+            }
+            
+        }
         
         initModel = Model(continue: number, move: move)
         print("continueGame", number)

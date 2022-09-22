@@ -13,6 +13,8 @@ struct MainMenuView: View {
     @EnvironmentObject var viewModelNewGame: ViewModelNewGame
     @EnvironmentObject var viewModelContinueGame: ViewModelContinueGame
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         NavigationView {
             VStack(alignment:.center){
@@ -21,13 +23,14 @@ struct MainMenuView: View {
                         Spacer()
                         NavigationLink(destination: NewGameView().onAppear{viewModelNewGame.shape()}) {
                             Text("New Game")
-                                .font(.body)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                            
                         }
                         .padding()
                     }
                     NavigationLink(destination: ContinueGameView().onAppear{}) {
                         Text("Continue")
+                           
                     }
                     .buttonStyle(MenuButtonStyle())
                     .padding(.top, 30)
@@ -69,6 +72,9 @@ struct MainMenuView: View {
 }
 
 struct MenuButtonStyle: ButtonStyle {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             ZStack {
@@ -78,7 +84,6 @@ struct MenuButtonStyle: ButtonStyle {
             .frame(width: 200, height: 50, alignment: .center)
             configuration.label
                 .font(.title3)
-                .foregroundColor(.black)
                 .clipShape(Capsule())
                 .cornerRadius(10)
         }

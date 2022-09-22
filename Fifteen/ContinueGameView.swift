@@ -12,7 +12,9 @@ import AVFoundation
 struct ContinueGameView: View {
     
     @EnvironmentObject var viewModel: ViewModelContinueGame
+    
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
@@ -44,7 +46,7 @@ struct ContinueGameView: View {
         }){
             Text("Back menu")
                 .font(.title3)
-                .foregroundColor(Color.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
         }
         )
     }
@@ -55,7 +57,7 @@ struct FieldContinueGameView: View {
     @State var tap = false
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main)
+//            RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main)
             LazyVGrid(columns: [GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)), GridItem(.fixed(80)) ] ) {
                 
                 ForEach (0..<viewModel.model.gameField.count) { number in

@@ -12,7 +12,10 @@ import AVFoundation
 struct NewGameView: View {
     @EnvironmentObject var viewModel: ViewModelNewGame
     @EnvironmentObject var viewModelContinueGame: ViewModelContinueGame
+    
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -30,10 +33,6 @@ struct NewGameView: View {
                 
                 Spacer()
                 
-                Button{
-                    
-                } label: {Text("Shape")}
-                
             }
             
             
@@ -48,7 +47,7 @@ struct NewGameView: View {
         }){
             Text("Back menu")
                 .font(.title3)
-                .foregroundColor(Color.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
         }
         )
     }
